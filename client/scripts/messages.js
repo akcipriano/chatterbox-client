@@ -1,4 +1,9 @@
 var Messages = {
-
+  // messageList: [
+  //   {},
+  //   {},
+  //   {},
+  //   {}
+  // ]
 
 };
