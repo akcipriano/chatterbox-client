@@ -7,7 +7,9 @@ var RoomsView = {
   },
 
   renderRoom: function(newroom) {
-    $('select').append('<option>' + newroom + '</option>');
+    if (!Rooms.roomNames.includes(newroom)) {
+      $('select').append('<option>' + newroom + '</option>');
+    }
   }
 
 };

@@ -19,3 +19,10 @@ var FormView = {
   }
 
 };
+
+// **click function**
+// var val = jquery to extract the value
+// var user = App.username;
+// var user = new Messages(user, val, )
+// MessagesView.initialize(user);
+// MessagesView.renderMessage(user);
