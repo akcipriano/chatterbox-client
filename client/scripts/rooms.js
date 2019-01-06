@@ -12,6 +12,9 @@ $(document).ready(function() {
     var roomName = $('#newroom').val();
 
     RoomsView.renderRoom(roomName);
+
+    roomName = roomName.split(' ').join('');
+
     Rooms.add(roomName);
     $('#newroom').val('');
 
@@ -22,8 +25,13 @@ var theRoom;
 
 $(document).ready(function() {
   $('select').change(function() {
-    theRoom = $(this).children('option:selected').val();
-    alert (theRoom);
+    theRoom = $(this).children('option:selected').val().split(' ').join('');
+
+    if (theRoom === '') {
+      $('.chat').show();
+    } else {
+      $('.chat').hide();
+      $('.' + theRoom).show();
+    }
   });
 });
-

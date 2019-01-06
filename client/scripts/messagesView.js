@@ -6,6 +6,7 @@ var MessagesView = {
     Parse.readAll((data) => {
       for (var i = 0; i < data.results.length; i++) {
         if (data.results[i].username && data.results[i].text) {
+          data.results[i].roomname = data.results[i].roomname.split(' ').join(''); // TEST (WORKS?)
           MessagesView.renderMessage(data.results[i]);
         }
       }
@@ -34,9 +35,19 @@ var MessagesView = {
   }
 };
 
+//Refresh Button
 $(document).ready(function() {
   $('button').click(function() {
     $('#chats').empty();
     MessagesView.initialize();
+
+    setTimeout(function () {
+      if (theRoom === '') {
+        $('.chat').show();
+      } else {
+        $('.chat').hide();
+        $('.' + theRoom).show();
+      }
+    }, 500);
   });
 });

@@ -23,8 +23,9 @@ var FormView = {
     // console.log('click!');
 
     Parse.create(userMsg, () => {
-      var msg = MessageView.render(userMsg);
-      MessagesView.$chats.prepend(msg);
+
+      $('#chats').empty();
+      MessagesView.initialize();
     });
 
     $('#message').val('');
