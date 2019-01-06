@@ -18,9 +18,11 @@ $(document).ready(function() {
   });
 });
 
+var theRoom;
+
 $(document).ready(function() {
   $('select').change(function() {
-    var theRoom = $(this).children('option:selected').val();
+    theRoom = $(this).children('option:selected').val();
     alert (theRoom);
   });
 });

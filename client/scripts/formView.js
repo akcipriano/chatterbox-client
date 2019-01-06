@@ -7,11 +7,30 @@ var FormView = {
   },
 
   handleSubmit: function(event) {
+
     // Stop the browser from submitting the form
     event.preventDefault();
 
-    console.log('click!');
+    var userMsg = {};
+    userMsg.username = App.username;
+    userMsg.text = $('#message').val();
+    userMsg.roomname = '';
+
+    if (theRoom) {
+      userMsg.roomname = theRoom;
+    }
+
+    // console.log('click!');
+
+    Parse.create(userMsg, () => {
+      var msg = MessageView.render(userMsg);
+      MessagesView.$chats.prepend(msg);
+    });
+
+    $('#message').val('');
   },
+
+
 
   setStatus: function(active) {
     var status = active ? 'true' : null;
@@ -20,9 +39,4 @@ var FormView = {
 
 };
 
-// **click function**
-// var val = jquery to extract the value
-// var user = App.username;
-// var user = new Messages(user, val, )
-// MessagesView.initialize(user);
-// MessagesView.renderMessage(user);
+
