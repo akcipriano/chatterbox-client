@@ -23,5 +23,4 @@ var RoomsView = {
       $('select').append('<option>' + newroom + '</option>');
     }
   }
-
 };

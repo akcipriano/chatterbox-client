@@ -6,7 +6,6 @@ var MessagesView = {
     Parse.readAll((data) => {
       for (var i = 0; i < data.results.length; i++) {
         if (data.results[i].username && data.results[i].text) {
-          data.results[i].roomname = data.results[i].roomname.split(' ').join(''); // TEST (WORKS?)
           MessagesView.renderMessage(data.results[i]);
         }
       }
@@ -22,16 +21,15 @@ var MessagesView = {
 
     MessagesView.$chats.append(msg);
 
-    // var userInfo = {
-    //   $username: $('.username'),
-    //   username: message.username,
-    //   isFriend: false
-    // };
+    var userInfo = {
+      $username: $('.username'),
+      username: message.username,
+      isFriend: false
+    };
 
-    // $('#chats').append(msg);
-    // if (!(_.pluck(Friends.user, 'username').includes(message.username))) {
-    //   Friends.user.push(userInfo);
-    // }
+    if (!(_.pluck(Friends.user, 'username').includes(message.username))) {
+      Friends.user.push(userInfo);
+    }
   }
 };
 
@@ -42,7 +40,7 @@ $(document).ready(function() {
     MessagesView.initialize();
 
     setTimeout(function () {
-      if (theRoom === '') {
+      if (theRoom === '' || !theRoom) {
         $('.chat').show();
       } else {
         $('.chat').hide();

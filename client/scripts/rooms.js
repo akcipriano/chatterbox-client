@@ -8,15 +8,18 @@ var Rooms = {
 };
 
 $(document).ready(function() {
-  $('#addroom').click(function() {
-    var roomName = $('#newroom').val();
+  $('#rooms').on('click', 'button', function() {
 
-    RoomsView.renderRoom(roomName);
+    var newRoomName = window.prompt('Enter New Room Name');
 
-    roomName = roomName.split(' ').join('');
+    var serverRoom = {
+      roomname: newRoomName       // NEW obj
+    };
 
-    Rooms.add(roomName);
-    $('#newroom').val('');
+    Parse.create(serverRoom);  // NEW
+    RoomsView.renderRoom(newRoomName);
+
+    Rooms.add(newRoomName);
 
   });
 });
@@ -27,7 +30,7 @@ $(document).ready(function() {
   $('select').change(function() {
     theRoom = $(this).children('option:selected').val().split(' ').join('');
 
-    if (theRoom === '') {
+    if (theRoom === '' || !theRoom) {       // || !theRoom is NEW
       $('.chat').show();
     } else {
       $('.chat').hide();

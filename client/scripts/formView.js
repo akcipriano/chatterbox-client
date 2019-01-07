@@ -20,24 +20,29 @@ var FormView = {
       userMsg.roomname = theRoom;
     }
 
-    // console.log('click!');
-
     Parse.create(userMsg, () => {
 
       $('#chats').empty();
       MessagesView.initialize();
     });
 
+    setTimeout(function () {
+      if (theRoom === '' || !theRoom) {
+        $('.chat').show();
+      } else {
+        $('.chat').hide();
+        $('.' + theRoom).show();
+      }
+    }, 500);
+    console.log('settimeoutdone');
+
     $('#message').val('');
   },
-
-
 
   setStatus: function(active) {
     var status = active ? 'true' : null;
     FormView.$form.find('input[type=submit]').attr('disabled', status);
   }
-
 };
 
 
